@@ -14,41 +14,33 @@ public class travellersCode {
 			System.out.println(x + " " + y);
 			if(array[x][y] - 48 == 2) {
 				if ( x - 1 >= 0 ) {
-					System.out.println("Yes x - 1 = " + x +  "- 1 was called ");
 					if(array[x-1][y] - 48 == 2) {
-					 largest = Math.max(largest, travellersCoder(array,x-1,y,largest+=2));
+					 largest = Math.max(largest, travellersCoder(array,x-1,y,largest+=1));
 					}else {
-						return largest+=1;
+						return largest;
 					}
 			    }
-				if ( x + 1 < sizex ) {
-					System.out.println("Yes x + 1 =  " + x +  " + 1 was called ");
-					if(array[x+1][y] - 48 == 2) {
-						largest = Math.max(largest,travellersCoder(array,x+=1,y,largest+=1));
-					}else {
-						return largest+=1;
-					}
-			    }
-
 				if ( y - 1 >= 0 ) {
-					System.out.println("Yes y - 1 = " + y +  " 1 was called ");
 					if(array[x][y-1] - 48 == 2) {
 						largest = Math.max(largest, travellersCoder(array,x,y-1,largest+=1));
 					}else {
-						return largest+=1;
+						return largest;
 					}
 				}
 				if ( y + 1 < sizey ) {
-					System.out.println("Yes y + 1 = " + y +  "+ 1 was called ");
 					if(array[x][y+1] - 48 == 2) {
 					largest = Math.max(largest,travellersCoder(array,x,y+=1,largest+=1));
 					}else {
-					 return largest+=1;
+					 return largest;
 			    }
-		     }
-			 if(array[x][y] - 48  == 1 ) {
-			  return largest;	
-			}
+			  }
+			 if ( x + 1 < sizex ) {
+					if(array[x+1][y] - 48 == 2) {
+						largest = Math.max(largest,travellersCoder(array,x+=1,y,largest+=1));
+					}else {
+						return largest;
+					}
+			  }		
 		 }
 		}
 		return Math.max(0, largest); 
@@ -70,10 +62,11 @@ public class travellersCode {
 		for(int x = 0; x < xvalue; x++ ) {
 		    arrau1[x] = br.readLine().replace(" ", "").toCharArray();
 		}
+		
 		int largest = 0;
         for(int x = 0; x < xvalue; x++ ) {
         	for( int y = 0; y < yvalue; y++ ) {
-        		largest = Math.max(largest,travellersCoder(arrau1,x,y,largest));
+        		largest = Math.max(largest,travellersCoder(arrau1,x,y,0));
         	}
         }
         
